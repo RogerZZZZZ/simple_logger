@@ -1,3 +1,5 @@
-export declare namespace Logger {
-    function hello(target: object, key: string, descriptor: any): any;
+export declare module Logger {
+    namespace PV {
+        function hello(target: object, key: string, descriptor: any): any;
+    }
 }

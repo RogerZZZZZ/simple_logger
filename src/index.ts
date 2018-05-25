@@ -1,11 +1,12 @@
 import {Logger} from './components/Logger'
 
 export default class Main {
+
     constructor() {
         this.attack(10)
     }
 
-    @Logger.hello
+    @Logger.PV.hello
     attack(attackValue: number) {
         console.log(attackValue)
     }
