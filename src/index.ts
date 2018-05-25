@@ -1,6 +1,13 @@
+import {Logger} from './components/Logger'
+
 export default class Main {
     constructor() {
-        console.log('Typescript Webpack starter launched');
+        this.attack(10)
+    }
+
+    @Logger.hello
+    attack(attackValue: number) {
+        console.log(attackValue)
     }
 }
 
