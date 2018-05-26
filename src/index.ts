@@ -1,5 +1,8 @@
 import {Logger} from './components/Logger'
 let PV = Logger.PV
+PV.init({
+    serverAddress: 'http://localhost:3000'
+})
 
 export default class Main {
 
@@ -8,7 +11,7 @@ export default class Main {
     }
 
     @PV.hello
-    @PV.satSomething('xixixi')
+    @PV.saySomething('xixixi')
     attack(attackValue: number) {
         console.log(attackValue)
     }

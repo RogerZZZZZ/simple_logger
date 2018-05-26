@@ -1,9 +1,8 @@
 import ModuleStandard from './ModuleStandard';
 export declare module Logger {
-    class PV implements ModuleStandard {
-        __SERVER_ADDRESS: string;
+    class PV extends ModuleStandard {
+        static count(): void;
         static hello(target: object, key: string, descriptor: any): any;
-        static satSomething(word: string): (target: object, key: string, descriptor: any) => void;
-        init(): void;
+        static saySomething(word: string): (target: object, key: string, descriptor: any) => void;
     }
 }

@@ -4,6 +4,7 @@
     "module": "es6",
     "declaration": true,
     "sourceMap": true,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [

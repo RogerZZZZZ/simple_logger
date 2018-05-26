@@ -1,8 +1,12 @@
 import ModuleStandard from './ModuleStandard'
 
 export module Logger {
-  export class PV implements ModuleStandard {
-    __SERVER_ADDRESS: string
+  export class PV extends ModuleStandard {
+
+    static count () {
+
+    }
+
 
     static hello (target: object, key: string, descriptor: any) {
       const method= descriptor.value;
@@ -16,14 +20,11 @@ export module Logger {
       return descriptor;
     }
 
-    static satSomething (word: string) {
+    static saySomething (word: string) {
       return (target: object, key: string, descriptor: any) => {
         console.log('oooo' + word)
+        console.log('server address:', this._opt.serverAddress)
       }
-    }
-
-    public init () {
-
     }
   }
 }

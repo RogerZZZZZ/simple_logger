@@ -1,5 +1,9 @@
-export default interface ModuleStandard {
-  __SERVER_ADDRESS: string
+export default class ModuleStandard {
+  static _opt = {
+    serverAddress: 'http://localhost:3000'
+  }
 
-  init (_opt: object) : void
+  static init(_opt: object) {
+    Object.assign(this._opt, _opt)
+  }
 }
