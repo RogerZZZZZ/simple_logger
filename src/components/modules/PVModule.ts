@@ -3,7 +3,7 @@ import RequestModule from '../common/RequestModule'
 
 let requestModule = new RequestModule(false);
 
-export default class PV extends ModuleStandard {
+export default class PVModule extends ModuleStandard {
 
   static count (word: string) {
     return (target: object, key: string, descriptor: any) => {

@@ -23,8 +23,10 @@ export default class RequestModule {
                     value: d.label + '=' + d.value + '&' + s.label + '=' + s.value
                 }
             }).value
-        } else {
+        } else if (params.length === 1){
             requestUrl = url + '?' + params[0].label + '=' + params[0].value
+        } else {
+            requestUrl = url
         }
 
         console.log(requestUrl)

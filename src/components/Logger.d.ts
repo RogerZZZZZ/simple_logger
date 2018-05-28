@@ -1,7 +1,8 @@
-import ModuleStandard from './ModuleStandard';
+import PVModule from './modules/PVModule';
+import UVModule from './modules/UVModule';
+import EventModule from './modules/EventModule';
 export declare namespace Logger {
-    class PV extends ModuleStandard {
-        static count(word: string): (target: object, key: string, descriptor: any) => void;
-        static hello(target: object, key: string, descriptor: any): any;
-    }
+    const PV: typeof PVModule;
+    const UV: typeof UVModule;
+    const EventLogger: typeof EventModule;
 }
