@@ -3,7 +3,9 @@ import RequestModule from './common/RequestModule'
 
 let requestModule = new RequestModule(false);
 
-export module Logger {
+export namespace Logger {
+
+  // TODO: extract each class to outside
   export class PV extends ModuleStandard {
 
     static count (word: string) {
@@ -18,7 +20,7 @@ export module Logger {
     }
 
     static hello (target: object, key: string, descriptor: any) {
-      const method= descriptor.value;
+      const method = descriptor.value;
       let moreAtk = 50;
       let ret;
       descriptor.value = (...args: Array<any>) => {
@@ -27,10 +29,6 @@ export module Logger {
         return ret;
       }
       return descriptor;
-    }
-
-    static saySomething (word: string) {
-      
     }
   }
 }

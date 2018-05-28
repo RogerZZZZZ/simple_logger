@@ -1,12 +1,13 @@
 import * as _ from 'lodash'
 import axios from 'axios'
 
-interface CommonData {
-    label: string,
-    value: string
+export interface CommonData {
+    label?: string,
+    value?: string
 }
 
 export default class RequestModule {
+    // TODO: implement this config feature
     private _isThrottle: boolean = true
 
     constructor (isThrottle: boolean) {
