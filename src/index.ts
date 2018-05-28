@@ -1,7 +1,7 @@
 import {Logger} from './components/Logger'
-let PV = Logger.PV
-PV.init({
-    serverAddress: 'http://localhost:3000'
+let pv = Logger.PV
+pv.init({
+    serverAddress: 'http://localhost:4040'
 })
 
 export default class Main {
@@ -10,8 +10,8 @@ export default class Main {
         this.attack(10)
     }
 
-    @PV.hello
-    @PV.saySomething('xixixi')
+    @pv.hello
+    @pv.count('test')
     attack(attackValue: number) {
         console.log(attackValue)
     }

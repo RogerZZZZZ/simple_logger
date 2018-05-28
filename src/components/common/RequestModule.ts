@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
-import axios, { AxiosPromise } from 'axios'
+import axios from 'axios'
 
-interface commonData {
+interface CommonData {
     label: string,
     value: string
 }
@@ -13,18 +13,25 @@ export default class RequestModule {
         this._isThrottle = isThrottle
     }
 
-    private getMethod (url: string, callBack: Function, ...params: Array<commonData>) {
-        let requestUrl: string = url + '?' + params.reduce( (d, s) => {
-            return {
-                label: 'res',
-                value: d.label + '=' + s.value + '&' + s.label + '=' + s.value
-            }
-        }).value
+    public getMethod (url: string, callBack: Function, ...params: Array<CommonData>) {
+        let requestUrl = ''
+        if (params.length > 1) {
+            requestUrl = url + '?' + params.reduce( (d, s) => {
+                return {
+                    label: 'res',
+                    value: d.label + '=' + d.value + '&' + s.label + '=' + s.value
+                }
+            }).value
+        } else {
+            requestUrl = url + '?' + params[0].label + '=' + params[0].value
+        }
+
+        console.log(requestUrl)
 
         axios.get(requestUrl).then(callBack())
     }
 
-    private postMethod (url: string, callBack: Function, params: object) {
+    public postMethod (url: string, callBack: Function, params: object) {
         axios.post(url, params).then(callBack())
     }
 }

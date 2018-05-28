@@ -1,12 +1,21 @@
 import ModuleStandard from './ModuleStandard'
+import RequestModule from './common/RequestModule'
+
+let requestModule = new RequestModule(false);
 
 export module Logger {
   export class PV extends ModuleStandard {
 
-    static count () {
-
+    static count (word: string) {
+      return (target: object, key: string, descriptor: any) => {
+        requestModule.getMethod('http://localhost:4040/test', (data: object) => {
+          console.log(data)
+        }, {
+          label: 'abc',
+          value: word
+        })
+      }
     }
-
 
     static hello (target: object, key: string, descriptor: any) {
       const method= descriptor.value;
@@ -21,10 +30,7 @@ export module Logger {
     }
 
     static saySomething (word: string) {
-      return (target: object, key: string, descriptor: any) => {
-        console.log('oooo' + word)
-        console.log('server address:', this._opt.serverAddress)
-      }
+      
     }
   }
 }
