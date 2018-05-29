@@ -7,7 +7,7 @@ export default class PVModule extends ModuleStandard {
 
   static count (word: string) {
     return (target: object, key: string, descriptor: any) => {
-      requestModule.getMethod('http://localhost:4040/test', (data: object) => {
+      requestModule.postMethod('http://localhost:3000/pv/visitor', (data: object) => {
         console.log(data)
       }, {
         label: 'abc1',
