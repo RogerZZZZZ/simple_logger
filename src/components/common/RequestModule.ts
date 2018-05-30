@@ -31,10 +31,10 @@ export default class RequestModule {
 
         console.log(requestUrl)
 
-        axios.get(requestUrl).then(callBack())
+        axios.get(requestUrl).then((response) => callBack(response))
     }
 
     public postMethod (url: string, callBack: Function, params: object) {
-        axios.post(url, params).then(callBack())
+        axios.post(url, params).then((response) => callBack(response))
     }
 }

@@ -1,8 +1,8 @@
 import {Logger} from './components/Logger'
-let pv = Logger.PV
-pv.init({
+Logger.config({
     serverAddress: 'http://localhost:3000'
 })
+let pv = Logger.PV
 
 export default class Main {
 
