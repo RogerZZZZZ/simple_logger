@@ -35,12 +35,6 @@ export default class RequestModule {
     }
 
     public postMethod (url: string, callBack: Function, params: object) {
-        axios.post(url, params, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                "Access-Control-Allow-Origin": "*",
-                'withCredentials': true
-            }
-        }).then(callBack())
+        axios.post(url, params).then(callBack())
     }
 }
