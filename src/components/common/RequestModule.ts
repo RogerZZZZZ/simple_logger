@@ -19,7 +19,7 @@ export default class RequestModule {
         if (params.length > 1) {
             requestUrl = url + '?' + params.reduce( (d, s) => {
                 return {
-                    label: 'res',
+                    label: 'ressult',
                     value: d.label + '=' + d.value + '&' + s.label + '=' + s.value
                 }
             }).value
