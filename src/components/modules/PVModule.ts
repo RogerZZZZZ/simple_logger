@@ -2,13 +2,11 @@ import ModuleStandard from '../ModuleStandard'
 import RequestModule from '../common/RequestModule'
 import { ModelPv, RequiredModel } from './model'
 
-import platform from 'platform'
-
 let requestModule = new RequestModule(false);
 
 const wrapPvModel: Function = (model: ModelPv): RequiredModel => {
-  console.log(platform.name)
-  model['platform'] = platform.name
+  // console.log(platform.name)
+  // model['platform'] = platform.name
   return model
 }
 
@@ -36,7 +34,6 @@ export default class PVModule extends ModuleStandard {
 
   static test (target: object, key: string, descriptor: any) {
     const method = descriptor.value;
-    console.log(platform.name)
     let ret;
     descriptor.value = (...args: Array<any>) => {
       ret = method.apply(target, args);
