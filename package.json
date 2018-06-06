@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "platform": "^1.3.5",
     "qs": "^6.5.2"
   }
 }

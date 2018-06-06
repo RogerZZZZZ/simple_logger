@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 import axios from 'axios'
 
 export interface CommonData {
-    label?: string,
+    label: string,
     value?: string
 }
 
@@ -14,27 +14,24 @@ export default class RequestModule {
         this._isThrottle = isThrottle
     }
 
-    public getMethod (url: string, callBack: Function, ...params: Array<CommonData>) {
+    public getMethod (url: string, callBack: Function, param: object): void {
         let requestUrl = ''
-        if (params.length > 1) {
-            requestUrl = url + '?' + params.reduce( (d, s) => {
-                return {
-                    label: 'ressult',
-                    value: d.label + '=' + d.value + '&' + s.label + '=' + s.value
-                }
-            }).value
-        } else if (params.length === 1){
-            requestUrl = url + '?' + params[0].label + '=' + params[0].value
-        } else {
+        const keys = Object.keys(param)
+        if (keys.length > 1) {
+            requestUrl = url + '?' + keys.reduce((t:string, s:string): string => {
+                return t + '=' + param[t] + '&' + s + '=' + param[s]
+            })
+        } else if(keys.length <= 0) {
             requestUrl = url
+        } else {
+            requestUrl = url + '?' + keys[0] + '=' + param[keys[0]]
         }
-
         console.log(requestUrl)
 
         axios.get(requestUrl).then((response) => callBack(response))
     }
 
-    public postMethod (url: string, callBack: Function, params: object) {
+    public postMethod (url: string, callBack: Function, params: object): void {
         axios.post(url, params).then((response) => callBack(response))
     }
 }

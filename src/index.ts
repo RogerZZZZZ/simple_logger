@@ -11,10 +11,12 @@ export default class Main {
     }
 
     @pv.hello
-    @pv.count('test12')
-    attack(attackValue: number) {
+    // @pv.count()
+    @pv.test
+    public attack(attackValue: number): void {
         console.log(attackValue)
     }
+
 }
 
 let start = new Main();

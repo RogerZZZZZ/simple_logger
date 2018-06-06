@@ -1,3 +1,5 @@
+import RequestModule from './common/RequestModule';
+
 export default class ModuleStandard {
   static _opt = {
     serverAddress: 'http://localhost:3000'
