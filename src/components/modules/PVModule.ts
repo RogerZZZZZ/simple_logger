@@ -12,11 +12,11 @@ const wrapPvModel: Function = (model: RequiredModel): ModelPv => {
 
 export default class PVModule extends ModuleStandard {
 
-  static count (_opt: RequiredModel) {
+  static count (model: RequiredModel) {
     return (target: object, key: string, descriptor: any) => {
       requestModule.postMethod(this._opt.serverAddress + '/pv/visitor', (data: object) => {
         console.log(data)
-      }, wrapPvModel(_opt))
+      }, wrapPvModel(model))
     }
   }
 
