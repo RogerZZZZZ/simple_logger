@@ -20,3 +20,13 @@ export const isPromise: Function = (obj: any): boolean => {
         return false;
     }
 };
+
+export const only: Function = (obj: object, keys: string | string[]): object => {
+    obj = obj || {};
+    if ('string' === typeof keys) keys = keys.split(/ +/);
+    return keys.reduce((ret: object, key: string): object => {
+        if (null === obj[key]) return ret;
+        ret[key] = obj[key];
+        return ret;
+    }, {})
+}
