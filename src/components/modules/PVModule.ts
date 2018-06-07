@@ -1,13 +1,13 @@
 import ModuleStandard from '../ModuleStandard'
 import RequestModule from '../common/RequestModule'
 import { ModelPv, RequiredModel } from './model'
+import * as platform from 'platform'
+import { only } from '../lib/help'
 
 let requestModule = new RequestModule(false);
 
-const wrapPvModel: Function = (model: ModelPv): RequiredModel => {
-  // console.log(platform.name)
-  // model['platform'] = platform.name
-  return model
+const wrapPvModel: Function = (model: RequiredModel): ModelPv => {
+  return Object.assign(model, only(platform, 'name version os'))
 }
 
 export default class PVModule extends ModuleStandard {
@@ -26,16 +26,6 @@ export default class PVModule extends ModuleStandard {
     let ret;
     descriptor.value = (...args: Array<any>) => {
       args[0] += moreAtk;
-      ret = method.apply(target, args);
-      return ret;
-    }
-    return descriptor;
-  }
-
-  static test (target: object, key: string, descriptor: any) {
-    const method = descriptor.value;
-    let ret;
-    descriptor.value = (...args: Array<any>) => {
       ret = method.apply(target, args);
       return ret;
     }

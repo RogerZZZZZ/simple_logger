@@ -5,7 +5,9 @@
 export interface ModelPv {
     tag: string,
     platForm?: string,
-    userName: string
+    userName?: string,
+    os?: string,
+    version?: string,
 }
 
 export interface RequiredModel {

@@ -11,8 +11,9 @@ export default class Main {
     }
 
     @pv.hello
-    // @pv.count()
-    @pv.test
+    @pv.count({
+        tag: 'attack.function'
+    })
     public attack(attackValue: number): void {
         console.log(attackValue)
     }
