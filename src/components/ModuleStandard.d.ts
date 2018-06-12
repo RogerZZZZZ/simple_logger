@@ -7,5 +7,5 @@ export declare class ModuleStandard {
     constructor(opt: Option);
     __log(log: string): void;
     __err(log: string): void;
-    getOpt(): Option;
+    readonly opt: Option;
 }

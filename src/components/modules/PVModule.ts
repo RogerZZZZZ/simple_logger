@@ -18,7 +18,7 @@ export default class PVModule extends ModuleStandard {
 
   public count (model: RequiredModel) {
     return (target: object, key: string, descriptor: any) => {
-      requestModule.postMethod(this.getOpt().serverAddress + '/pv/visitor', function (data: object) {
+      requestModule.postMethod(this.opt.serverAddress + '/pv/visitor', function (data: object) {
         this.__log(data)
       }.bind(this), wrapPvModel(model))
     }
@@ -37,7 +37,7 @@ export default class PVModule extends ModuleStandard {
   }
 
   public test(): void {
-    this.getOpt()
+    this.opt
   }
   
 }

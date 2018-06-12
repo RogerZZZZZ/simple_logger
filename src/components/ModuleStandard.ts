@@ -23,7 +23,7 @@ export class ModuleStandard {
     if (this._opt.debug) console.error(log)
   }
 
-  public getOpt() : Option {
+  public get opt (): Option {
     return this._opt
   }
 }
