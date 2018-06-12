@@ -1,20 +1,29 @@
 import RequestModule from './common/RequestModule';
 
-export default class ModuleStandard {
-  static _opt = {
+export interface Option {
+  serverAddress: string,
+  debug: boolean
+}
+
+export class ModuleStandard {
+  private _opt: Option = {
     serverAddress: 'http://localhost:3000',
     debug: false,
   }
 
-  static init(_opt: object) {
-    Object.assign(this._opt, _opt)
+  constructor (opt: Option) {
+    Object.assign(this._opt, opt)
   }
 
-  static __log (log: string) {
+  __log (log: string) {
     if (this._opt.debug) console.log(log)
   }
 
-  static __err (log: string) {
+  __err (log: string) {
     if (this._opt.debug) console.error(log)
+  }
+
+  public getOpt() : Option {
+    return this._opt
   }
 }

@@ -1,4 +1,4 @@
-import ModuleStandard from '../ModuleStandard'
+import { ModuleStandard, Option } from '../ModuleStandard'
 import RequestModule from '../common/RequestModule'
 import { ModelPv, RequiredModel } from './model'
 import * as platform from 'platform'
@@ -12,15 +12,19 @@ const wrapPvModel: Function = (model: RequiredModel): ModelPv => {
 
 export default class PVModule extends ModuleStandard {
 
-  static count (model: RequiredModel) {
+  constructor(opt: Option) {
+    super(opt)
+  }
+
+  public count (model: RequiredModel) {
     return (target: object, key: string, descriptor: any) => {
-      requestModule.postMethod(this._opt.serverAddress + '/pv/visitor', function (data: object) {
+      requestModule.postMethod(this.getOpt().serverAddress + '/pv/visitor', function (data: object) {
         this.__log(data)
       }.bind(this), wrapPvModel(model))
     }
   }
 
-  static hello (target: object, key: string, descriptor: any) {
+  public hello (target: object, key: string, descriptor: any) {
     const method = descriptor.value;
     let moreAtk = 50;
     let ret;
@@ -31,4 +35,9 @@ export default class PVModule extends ModuleStandard {
     }
     return descriptor;
   }
+
+  public test(): void {
+    this.getOpt()
+  }
+  
 }
