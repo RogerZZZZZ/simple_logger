@@ -1,5 +1,5 @@
-import { ModuleStandard, Option } from '../ModuleStandard'
-import RequestModule from '../common/RequestModule'
+import { ModuleStandard, Option } from '../module-standard'
+import RequestModule from '../common/request-module'
 import { ModelPv, RequiredModel } from './model'
 import * as platform from 'platform'
 import { only } from '../lib/help'

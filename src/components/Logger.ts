@@ -1,7 +1,7 @@
-import PVModule from './modules/PVModule'
-import UVModule from './modules/UVModule'
-import EventModule from './modules/EventModule'
-import { Option } from './ModuleStandard'
+import PVModule from './modules/pv-module'
+import UVModule from './modules/uv-module'
+import EventModule from './modules/event-module'
+import { Option } from './module-standard'
 
 export namespace Logger {
   let configObject: Option

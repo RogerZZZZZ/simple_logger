@@ -1,4 +1,4 @@
-import RequestModule from './common/RequestModule';
+import RequestModule from './common/request-module';
 
 export interface Option {
   serverAddress: string,
