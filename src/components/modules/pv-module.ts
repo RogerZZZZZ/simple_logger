@@ -16,12 +16,12 @@ export default class PVModule extends ModuleStandard {
     super(opt)
   }
 
-  public count (model: RequiredModel) {
-    return (target: object, key: string, descriptor: any) => {
+  public count (model: RequiredModel): Function {
+    return function(target: object, key: string, descriptor: any) {
       requestModule.postMethod(this.opt.serverAddress + '/pv/visitor', function (data: object) {
         this.__log(data)
       }.bind(this), wrapPvModel(model))
-    }
+    }.bind(this)
   }
 
   public hello (target: object, key: string, descriptor: any) {
