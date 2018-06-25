@@ -2,7 +2,7 @@ import {Logger} from './components/Logger'
 Logger.config({
     serverAddress: 'http://localhost:3000'
 })
-let pv = Logger.PV
+let visitor = Logger.Visitor
 
 export default class Main {
 
@@ -10,8 +10,7 @@ export default class Main {
         this.attack(10)
     }
 
-    @pv.hello
-    @pv.count({
+    @visitor.count({
         tag: 'attack.function'
     })
     public attack(attackValue: number): void {

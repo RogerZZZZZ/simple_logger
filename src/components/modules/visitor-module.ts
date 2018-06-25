@@ -1,16 +1,16 @@
 import { ModuleStandard, Option } from '../module-standard'
+import { ModelVisitor, RequiredModel } from './model'
 import RequestModule from '../common/request-module'
-import { ModelPv, RequiredModel } from './model'
 import * as platform from 'platform'
 import { only } from '../lib/help'
 
-let requestModule = new RequestModule(false);
+let requestModule = new RequestModule(false)
 
-const wrapPvModel: Function = (model: RequiredModel): ModelPv => {
+const wrapPvModel: Function = (model: RequiredModel): ModelVisitor => {
   return Object.assign(model, only(platform, 'name version os'))
 }
 
-export default class PVModule extends ModuleStandard {
+export default class VisitorModule extends ModuleStandard {
 
   constructor(opt: Option) {
     super(opt)
@@ -24,20 +24,5 @@ export default class PVModule extends ModuleStandard {
     }.bind(this)
   }
 
-  public hello (target: object, key: string, descriptor: any) {
-    const method = descriptor.value;
-    let moreAtk = 50;
-    let ret;
-    descriptor.value = (...args: Array<any>) => {
-      args[0] += moreAtk;
-      ret = method.apply(target, args);
-      return ret;
-    }
-    return descriptor;
-  }
-
-  public test(): void {
-    this.opt
-  }
   
 }
