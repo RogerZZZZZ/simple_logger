@@ -6,7 +6,7 @@ import { only } from '../lib/help'
 
 let requestModule = new RequestModule(false)
 
-const wrapPvModel: Function = (model: RequiredModel): ModelVisitor => {
+const wrapModel: Function = (model: RequiredModel): ModelVisitor => {
   return Object.assign(model, only(platform, 'name version os'))
 }
 
@@ -18,11 +18,9 @@ export default class VisitorModule extends ModuleStandard {
 
   public count (model: RequiredModel): Function {
     return function(target: object, key: string, descriptor: any) {
-      requestModule.postMethod(this.opt.serverAddress + '/pv/visitor', function (data: object) {
+      requestModule.postMethod(this.opt.serverAddress + '/visitor/count', function (data: object) {
         this.__log(data)
-      }.bind(this), wrapPvModel(model))
+      }.bind(this), wrapModel(model))
     }.bind(this)
   }
-
-  
 }
