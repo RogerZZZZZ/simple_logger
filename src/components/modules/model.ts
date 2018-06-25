@@ -13,6 +13,7 @@ export interface ModelVisitor extends BaseInfo {
 
 export interface ModuleEvent extends BaseInfo {
     eventName: string,
+    tag: string,
 }
 
 interface BaseInfo {
