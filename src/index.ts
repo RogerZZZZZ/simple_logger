@@ -1,6 +1,6 @@
 import Logger from './components/Logger'
 const logger = Logger.instance({
-    serverAddress: 'http://118.184.218.23:3000',
+    serverAddress: 'http://118.184.218.23:3005',
 })
 let visitor = logger.Visitor
 
@@ -11,7 +11,8 @@ export default class Main {
     }
 
     @visitor.count({
-        tag: 'attack.function'
+        tag: 'attack.function',
+        page: 'attack',
     })
     public attack(attackValue: number): void {
         console.log(attackValue)

@@ -7,7 +7,7 @@ import { only } from '../lib/help'
 let requestModule = new RequestModule(false)
 
 const wrapModel: Function = (model: RequiredModel): ModelVisitor => {
-  return Object.assign(model, only(platform, 'name version os'))
+  return Object.assign(model, only(platform, 'name version os.family os.architecture'))
 }
 
 export default class VisitorModule extends ModuleStandard {

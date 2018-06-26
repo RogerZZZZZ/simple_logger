@@ -1,6 +1,3 @@
-/**
- * @description some helping functions
- */
 export declare const isArray: Function;
 export declare const isObject: Function;
 export declare const isFunction: Function;
