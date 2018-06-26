@@ -1,8 +1,8 @@
-import {Logger} from './components/Logger'
-Logger.config({
-    serverAddress: 'http://localhost:3000'
+import Logger from './components/Logger'
+const logger = Logger.instance({
+    serverAddress: 'http://118.184.218.23:3000',
 })
-let visitor = Logger.Visitor
+let visitor = logger.Visitor
 
 export default class Main {
 

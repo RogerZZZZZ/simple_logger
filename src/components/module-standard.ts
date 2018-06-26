@@ -1,8 +1,8 @@
 import RequestModule from './common/request-module';
 
 export interface Option {
-  serverAddress: string,
-  debug: boolean
+  serverAddress?: string,
+  debug?: boolean
 }
 
 export class ModuleStandard {
