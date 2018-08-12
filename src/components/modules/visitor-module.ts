@@ -6,9 +6,7 @@ import { only } from '../lib/help'
 
 let requestModule = new RequestModule(false)
 
-const wrapModel: Function = (model: RequiredModel): ModelVisitor => {
-  return Object.assign(model, only(platform, 'name version os.family os.architecture'))
-}
+
 
 export default class VisitorModule extends ModuleStandard {
   private _timers: Map<string, number>
@@ -23,7 +21,7 @@ export default class VisitorModule extends ModuleStandard {
     return function(target: object, key: string, descriptor: any) {
       requestModule.postMethod(this.opt.serverAddress + '/visitor/count', function(data: object) {
         this.__log(data)
-      }.bind(this), wrapModel(model))
+      }.bind(this), this.wrapModel(model))
     }.bind(this)
   }
 
@@ -46,7 +44,7 @@ export default class VisitorModule extends ModuleStandard {
       this._timers.delete(page)
       requestModule.postMethod(this.opt.serverAddress + '/visitor/pageStay', function(data: object) {
         this.__log(data)
-      }.bind(this), wrapModel({timeSpan: span}))
+      }.bind(this), this.wrapModel({timeSpan: span}))
     }
   }
 
@@ -64,5 +62,10 @@ export default class VisitorModule extends ModuleStandard {
 
   private timeSpan(then: number): number {
     return (this.now() - then)
+  }
+
+  private wrapModel: Function = (model: RequiredModel): ModelVisitor => {
+    Object.assign(model, {page: this.opt.page})
+    return Object.assign(model, only(platform, 'name version os.family os.architecture'))
   }
 }

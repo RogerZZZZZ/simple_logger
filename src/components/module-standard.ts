@@ -2,12 +2,14 @@ import RequestModule from './common/request-module';
 
 export interface Option {
   serverAddress?: string,
+  page: string,
   debug?: boolean
 }
 
 export class ModuleStandard {
   private _opt: Option = {
     serverAddress: 'http://localhost:3000',
+    page: 'ignored',
     debug: false,
   }
 

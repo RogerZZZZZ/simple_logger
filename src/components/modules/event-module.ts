@@ -6,10 +6,6 @@ import { only } from '../lib/help'
 
 let requestModule = new RequestModule(false)
 
-const wrapModel: Function = (model: RequiredModel): ModuleEvent => {
-  return Object.assign(model, only(platform, 'name version os'))
-}
-
 export default class EventModule extends ModuleStandard {
   
   constructor(opt: Option) {
@@ -20,7 +16,12 @@ export default class EventModule extends ModuleStandard {
     return function(target: object, key: string, descriptor: any) {
       requestModule.postMethod(this.opt.serverAddress + '/event/trigger', function (data: object) {
         this.__log(data)
-      }.bind(this), wrapModel(model))
+      }.bind(this), this.wrapModel(model))
     }.bind(this)
+  }
+
+  private wrapModel (model: RequiredModel): ModuleEvent {
+    Object.assign(model, {page: this.opt.page})
+    return Object.assign(model, only(platform, 'name version os'))
   }
 }
